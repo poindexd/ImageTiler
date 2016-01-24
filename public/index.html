@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Image Tiling Demo</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css">
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+	<link rel='stylesheet' href="main.css">
+</head>
+<body>
+
+	<div class='container'>
+		<h2>Image Tiling Demo</h2>
+		<div id='content_row' class='row'>
+			<div class='col s12 l9'>
+				<div id='map'>
+				</div>
+			</div>
+			<div class='col s12 l3 valign-wrapper'>
+			<div class='valign'>
+				<img id='tile_preview'>
+				<div class='row'>
+					<div class="input-field col s4">
+						<input id='zoom' type='number' min='0'/>
+						<label for='zoom'>zoom</label>
+					</div>
+					<div class="input-field col s4">
+						<input id='row' type='number' min='0'/>
+						<label for='row'>row</label>
+					</div>
+					<div class="input-field col s4">
+						<input id='col' type='number' min='0'/>
+						<label for='col'>col</label>
+					</div>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src='https://code.jquery.com/jquery-2.2.0.min.js'></script>
+	<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+	<script src='main.js'></script>
+</body>
+</html>

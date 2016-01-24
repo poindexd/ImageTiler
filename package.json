@@ -1,0 +1,11 @@
+{
+  "name": "tiles",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Dan Poindexter",
+  "license": "ISC",
+  "dependencies": {
+    "del": "^2.2.0",
+    "express": "^4.13.4"
+  }
+}

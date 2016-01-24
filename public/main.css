@@ -1,0 +1,41 @@
+body{
+	width: 100%;
+	height: 100%;
+	background-image: radial-gradient(98% 100%, #242e36 0%,#0e202e 100%);
+	color:white;
+	letter-spacing: 0.7px;
+	font-weight: 300;
+	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+#map{
+	background-color: #455a64;
+	width: 100%;
+	height: 500px;
+}
+
+#tile_preview{
+	width:100%;
+	height: auto;
+	background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=');
+}
+#content_row{
+	border-top: 1px solid #ffc40c;
+	border-bottom: 1px solid #ffc40c;
+	padding: 40px 0px;
+}
+input[type=text]:focus:not([readonly]), input[type=number]:focus:not([readonly]){
+	border-bottom: 1px solid #ffc40c;
+    box-shadow: 0 1px 0 0 #ffc40c;
+}
+input[type=text]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label{
+		color: #ffc40c;
+}
+/*
+    background-color: #ffc40c;
+    background-image: -webkit-linear-gradient(top, #ffc40c 18%, #f79400 200%);
+    background-image: -o-linear-gradient(top, #ffc40c 18%, #f79400 200%);
+    background-image: linear-gradient(to bottom, #ffc40c 18%, #f79400 200%);
+    background-repeat: repeat-x;
+*/
