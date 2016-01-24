@@ -8,8 +8,8 @@ var image_path = process.argv[2];
 var tile_size = process.argv[3] || 256;
 
 //Globals
-var num_zoom_levels, _metadata;
-var zoom_levels = [];
+var num_zoom_levels;
+var zoom_levels = {};
 var image = sharp(image_path);
 
 //Clear tiles folder
@@ -28,13 +28,11 @@ function generateTiles(){
 		console.log('tile size: ' + tile_size);
 		console.log('width: ' + metadata.width + ' height: ' + metadata.height);
 
-		_metadata = metadata;
 		num_zoom_levels = getNumZoomLevels(metadata);
 
 		for (var zoom=0; zoom<num_zoom_levels; zoom++)
 			generateTilesForZoom(zoom);
 
-		fs.writeFileSync('./zoom_levels.json', JSON.stringify(zoom_levels), 'utf-8');
 	});
 
 }
@@ -52,44 +50,49 @@ function generateTiles(){
  */
  function generateTilesForZoom(zoom){
 
- 	var scaled_image = getScaledImage(zoom);
+ 	var data = getScaledImage(zoom);
+ 	var scaled_image = data.image;
 
- 	scaled_image.metadata(function(err, metadata){
+ 	console.log(data.width + 'x' + data.height);
 
- 		if (err)
- 			console.log(err)
+ 	for (var row=0; row<data.width; row+=tile_size){
+ 		for (var col=0; col<data.width; col+=tile_size){
+			//console.log('z: ' + z + ' x: ' + x / tile_size + ' y: ' + y / tile_size);
+			//console.log(zoom_levels[zoom.toString()]);
 
- 		for (var row=0; row<metadata.height; row+=tile_size){
- 			for (var col=0; col<metadata.width; col+=tile_size){
+			scaled_image.extract({left: col, top: row, width: tile_size, height: tile_size})
+			.toFile('./tiles/' + zoom + '-'+ row / tile_size + '-' + col / tile_size +'.jpg' , function(err){
 
-				//console.log('z: ' + z + ' x: ' + x / tile_size + ' y: ' + y / tile_size);
-				//zoom_levels[z.toString()] = {'rows': x / tile_size, 'cols': y / tile_size};
+				if (err)
+					console.log(err);
+				else
+					zoom_levels[zoom.toString()] = {'rows': row / tile_size, 'cols': col / tile_size};
 
-				scaled_image.extract({left: col, top: row, width: tile_size, height: tile_size})
-				.toFile('./tiles/' + zoom + '-'+ row / tile_size + '-' + col / tile_size +'.jpg' , function(err){
+				fs.writeFileSync('./zoom_levels.json', JSON.stringify(zoom_levels), 'utf-8');
 
-					//if (err)
-						//console.log(err);
-
-					});
-			}
+			});
 		}
-	});
- }
+	}
+
+}
 
 /*  Given a zoom level, returns a scaled
- *	instance of the image
+ *	instance of the image, along with size
  */
  function getScaledImage(zoom){
- 	return (zoom==num_zoom_levels-1) ? 
+ 	var data = {};
+ 	data.width = tile_size*Math.pow(2,zoom);
+
+ 	data.image = (zoom==num_zoom_levels-1) ? 
  	image.clone() 
  	: image
  	.clone()
  	.resize(
- 		roundToTileSize(tile_size*Math.pow(2,zoom)), 
- 		roundToTileSize(tile_size*Math.pow(2,zoom))
- 		)
- 	.max();
+ 		roundToTileSize(data.width), 
+ 		roundToTileSize(data.width)
+ 		);
+
+ 	return data;
  }
 
 /*  Given a number, rounds it to the

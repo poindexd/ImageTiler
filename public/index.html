@@ -8,7 +8,6 @@
 	<link rel='stylesheet' href="main.css">
 </head>
 <body>
-
 	<div class='container'>
 		<h2>Image Tiling Demo</h2>
 		<div id='content_row' class='row'>
@@ -16,30 +15,31 @@
 				<div id='map'>
 				</div>
 			</div>
-			<div class='col s12 l3 valign-wrapper'>
-			<div class='valign'>
+			<div class='col s12 l3'>
 				<img id='tile_preview'>
 				<div class='row'>
 					<div class="input-field col s4">
-						<input id='zoom' type='number' min='0'/>
+						<input id='zoom' type='number' min='0' value='0'/>
 						<label for='zoom'>zoom</label>
 					</div>
 					<div class="input-field col s4">
-						<input id='row' type='number' min='0'/>
+						<input id='row' type='number' min='0' value='0'/>
 						<label for='row'>row</label>
 					</div>
 					<div class="input-field col s4">
-						<input id='col' type='number' min='0'/>
-						<label for='col'>col</label>
+					<input id='col' type='number' min='0' value='0'/>
+						<label for='col' class='active'>col</label>
 					</div>
 				</div>
-				</div>
+				<label for='zoom_levels'>Zoom Levels:</label>
+				<div id='zoom_levels'></div>
 			</div>
 		</div>
+		<p>Source: <a href='https://github.com/poindexd/ImageTiler' target="blank">Github</a></p>
 	</div>
 	<script src='https://code.jquery.com/jquery-2.2.0.min.js'></script>
 	<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 	<script src='main.js'></script>
 </body>
 </html>

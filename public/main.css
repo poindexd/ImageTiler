@@ -6,7 +6,6 @@ body{
 	letter-spacing: 0.7px;
 	font-weight: 300;
 	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-
 }
 
 #map{
@@ -24,18 +23,12 @@ body{
 	border-top: 1px solid #ffc40c;
 	border-bottom: 1px solid #ffc40c;
 	padding: 40px 0px;
+	margin-top: 40px;
 }
 input[type=text]:focus:not([readonly]), input[type=number]:focus:not([readonly]){
 	border-bottom: 1px solid #ffc40c;
-    box-shadow: 0 1px 0 0 #ffc40c;
+	box-shadow: 0 1px 0 0 #ffc40c;
 }
-input[type=text]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label{
-		color: #ffc40c;
+input[type=text]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, a{
+	color: #ffc40c;
 }
-/*
-    background-color: #ffc40c;
-    background-image: -webkit-linear-gradient(top, #ffc40c 18%, #f79400 200%);
-    background-image: -o-linear-gradient(top, #ffc40c 18%, #f79400 200%);
-    background-image: linear-gradient(to bottom, #ffc40c 18%, #f79400 200%);
-    background-repeat: repeat-x;
-*/
