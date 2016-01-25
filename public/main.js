@@ -23,9 +23,10 @@ $.getJSON(baseurl + '/zoom-levels', function(data){
 
 	$('label').addClass('active');
 
-	var map = L.map('map').setView([0, 0], 1);
+	var map = L.map('map').setView([0, 0], 0);
 
 	L.tileLayer(baseurl + '/tiles/{z}-{y}-{x}.jpg', {
+		continuousWorld: true,
 		minZoom: min_zoom,
 		maxZoom: max_zoom,
 	}).addTo(map);
