@@ -15,6 +15,9 @@
 ### Start Server
     node server
     
+### tilestitcher.js
+    var stitcher = new TileStitcher(element_id, baseurl, zoom_levels, tile_size);
+
 ## Endpoints
 Server runs on port 3000
 - / (demo page)
