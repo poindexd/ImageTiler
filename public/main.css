@@ -12,6 +12,7 @@ body{
 	background-color: #455a64;
 	width: 100%;
 	height: 512px;
+	overflow: hidden;
 }
 
 #tile_preview{

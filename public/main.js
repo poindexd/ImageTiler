@@ -9,12 +9,12 @@ $.getJSON(baseurl + '/zoom-levels', function(data){
 	.replace(/rows/g, ':')
 	.replace(/,/g, '\n');
 
-	var zoom_values = [];
-	for (var zoom in zoom_levels)
-		zoom_values.push(zoom);
-	
-	var min_zoom = zoom_values[0];
-	var max_zoom = zoom_values[zoom_values.length - 1];
+ 	var min_zoom = 100;
+ 	var max_zoom = 0;
+ 	for (var zoom in zoom_levels){
+ 		min_zoom = Math.min(zoom, min_zoom);
+ 		max_zoom = Math.max(zoom, max_zoom);
+ 	}
 
 	$('#zoom').attr('min', min_zoom);
 	$('#zoom').attr('max', max_zoom);
@@ -23,13 +23,21 @@ $.getJSON(baseurl + '/zoom-levels', function(data){
 
 	$('label').addClass('active');
 
-	var map = L.map('map').setView([0, 0], 0);
+	//Use this code for the Leafletjs version of tile stitcher
+	/*
+	var map = L.map('map').setView([Math.round(zoom_levels[0].cols/2), Math.round(zoom_levels[0].rows/2)], 0);
 
 	L.tileLayer(baseurl + '/tiles/{z}-{y}-{x}.jpg', {
 		continuousWorld: true,
 		minZoom: min_zoom,
 		maxZoom: max_zoom,
 	}).addTo(map);
+	*/
+
+	$.getJSON(baseurl + '/zoom-levels', function(data){
+		var stitcher = new TileStitcher('map', baseurl, data, 256);
+		stitcher.init();
+	});
 
 	updatePreview();
 });

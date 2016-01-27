@@ -53,15 +53,13 @@ function generateTiles(){
  	var data = getScaledImage(zoom);
  	if (data === null)
  		return;
- 	
+
  	var scaled_image = data.image;
 
  	console.log(data.width + 'x' + data.height);
 
  	for (var row=0; row<data.height; row+=tile_size){
  		for (var col=0; col<data.width; col+=tile_size){
-			//console.log('z: ' + z + ' x: ' + x / tile_size + ' y: ' + y / tile_size);
-			//console.log(zoom_levels[zoom.toString()]);
 
 			scaled_image.extract({left: col, top: row, width: tile_size, height: tile_size})
 			.toFile('./tiles/' + zoom + '-'+ row / tile_size + '-' + col / tile_size +'.jpg' , function(err){
@@ -73,11 +71,9 @@ function generateTiles(){
 					fs.writeFileSync('./zoom_levels.json', JSON.stringify(zoom_levels), 'utf-8');
 				}
 
-
 			});
 		}
 	}
-
 }
 
 /*  Given a zoom level, returns a scaled
@@ -110,18 +106,3 @@ function generateTiles(){
  function roundToTileSize(num){
  	return tile_size*(Math.round(num/tile_size));
  }
-
- /*
-512x256
-
-0 - 512 x 256
-1 - 1024 x 512
-
-width= 600
-height= 300
-
-var xratio = width / height //2
-var yratio = height/width // 1/2
-
-
- */
